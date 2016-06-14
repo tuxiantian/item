@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="share" extends="projectstruts" namespace="/front/sh">
+	<global-results>
+	<result name="login" type="redirect">
+			<param name="location">/login.html</param>
+			</result>
+	</global-results>
+		<action name="login!*" class="loginAction" method="{1}">
+			<result name="success">/index.html</result>
+			
+		</action>
+		<action name="item!*" class="itemAction" method="{1}" />
+		<action name="itemCategory!*" class="itemCategoryAction" method="{1}" />
+		
+	</package>
+</struts>
