@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<control>
+	<action path="/front/sh/login!login" service="" method="">
+		<input uid="login" service="loginService" method="login" desc="登陆">
+			<parameter key="loginName" toKey="username" scop="request"
+				regex="required" desc="用户名" />
+			<parameter key="password" toKey="password" scop="request"
+				regex="required" desc="密码" />
+		</input>
+	</action>
+	<action path="/front/sh/login!quit" service="" method="">
+		<input uid="quit" desc="退出系统" service="" method=""></input>
+	</action>
+	<action path="/front/sh/login!index" service="" method="">
+		<input uid="01" desc="进入首页查询权限" service="loginService" method="queryMenu"></input>
+	</action>
+	<action path="/front/sh/login!getPersonalInfo" service="" method="">
+	<input uid="getPersonalInfo" desc="获取个人信息"  service="" method=""></input>
+	</action>
+</control>

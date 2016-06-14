@@ -1,0 +1,16 @@
+{
+    "rows": [
+        {
+            "val": "1",
+            "name": "北京"
+        },{
+            "val": "2",
+            "name": "郑州"
+        },{
+            "val": "3",
+            "name": "南京"
+        }
+    ],
+    "defaultVal": "2",
+    "returnCode": "0"
+}

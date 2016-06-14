@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<bean id="controlService" class="com.tuxt.item.control.impl.ControlServiceImpl">
+		<property name="controlService" ref="controlServiceImpl" />
+	</bean>
+
+	<bean id="controlServiceImpl" class="org.codehaus.xfire.spring.remoting.XFireClientFactoryBean">
+		<property name="serviceClass">
+			<value>com.ai.frame.IControlService</value>
+		</property>
+		<property name="wsdlDocumentUrl">
+			<value>http://localhost:8804/itemcore/services/IControlService?wsdl</value>
+		</property>
+		<property name="lookupServiceOnStartup">
+			<value>false</value>
+		</property>
+		<property name="properties">
+			<props>
+				<prop key="max.connections.per.host">500</prop>
+				<prop key="max.total.connections">500</prop>
+			</props>
+		</property>
+	</bean>
+
+</beans>

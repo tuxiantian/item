@@ -1,0 +1,45 @@
+{
+    "busiCode": null,
+    "opId": null,
+    "phone": null,
+    "returnCode": "0",
+    "returnMessage": null,
+    "bean": {
+        "total": "11",
+        "roles": [
+            "1"
+        ]
+    },
+    "beans": [
+        {
+        "channelId": "54802480",
+        "channelType": "实体渠道",
+        "provCode": "851",
+        "cityCcode": "10504",
+        "creditRating": "1",
+        "createDate": "2015-08-17 10:55:56"
+        
+            
+        },
+        {
+        "channelId": "54802482",
+        "channelType": "实体渠道",
+        "provCode": "851",
+        "cityCcode": "10504",
+        "creditRating": "1",
+        "createDate": "2015-08-17 11:55:56"
+        
+            
+        },
+        {
+        "channelId": "54802483",
+        "channelType": "实体渠道",
+        "provCode": "851",
+        "cityCcode": "10504",
+        "creditRating": "1",
+        "createDate": "2015-08-17 12:55:56"
+        
+        }
+       
+    ]
+}

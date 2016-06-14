@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<title>中移在线集中审核系统</title>
+<link rel="stylesheet" type="text/css" href="ui/theme/alice.css">
+<link rel="stylesheet" type="text/css" href="ui/js/dialog/6.0.5/ui-dialog.css">
+<link rel="stylesheet" type="text/css" href="ui/theme/common.css">
+<style type="text/css">
+.login-wrap {
+	width: 500px;
+	margin: 150px auto 0;
+	border: 1px solid #ddd;
+	background: #fff;
+	border-radius: 5px;
+    box-shadow: 3px 3px 3px #9C9090;
+    position: relative;
+}
+.login-wrap .login-head {
+	text-align: center;
+    position: absolute;
+    top: -50px;
+    left: 0;
+    width: 100%;
+}
+.login-wrap .login-body {
+	padding: 30px 20px 20px;
+}
+.login-wrap .login-body ul li {
+	position: relative;
+	width: 100%;
+	border: 1px solid #DFDFDF;
+	border-radius: 5px;
+}
+.login-wrap .login-body ul li label {
+	position: absolute;
+	left: 20px;
+	top: 10px;
+	font-size: 16px;
+}
+.login-wrap .login-body ul li label span {
+	margin-right: 15px;
+}
+.login-wrap .login-body ul li .ui-input {
+	width: 360px;
+	height: 30px;
+	line-height: 30px;
+	padding-left: 90px;
+	border: none;
+}
+.login-wrap .login-body ul .J_userName {
+	border-bottom: 0;
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
+}
+.login-wrap .login-body ul .J_userPwd {
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
+}
+.login-wrap .login-body ul .J_userPwdS {
+	border-top: 0;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+	border-bottom-right-radius: 0;
+}
+.login-wrap .login-body ul .J_userPwdS .ui-input {
+	width: 240px;
+}
+#J_sendPwdS {
+	border: none;
+	border: 1px solid #ddd;
+	border-top: 0;
+	position: absolute;
+	top: 0;
+	left: 340px;
+	width: 79px!important;
+	height: 42px;
+	line-height: 42px;
+	*height: 45px;
+	*line-height: 45px;
+}
+.login-wrap .login-foot {
+	text-align: center;
+	padding-bottom: 30px;
+}
+.login-wrap .login-foot .ui-button {
+	width: 420px!important;
+	height: 40px;
+	line-height: 40px;
+}
+</style>
+</head>
+<body>
+<div class="login-wrap">
+	<div class="login-head">
+		<img src="ui/theme/img/pic-logo.png" width="230" height="30">
+	</div>
+	<div class="login-body">
+		<ul>
+			<li class="J_userName">
+				<label><span>账</span>号</label>
+				<input type="text" value="张三"  id="J_userName" name="J_userName" class="ui-input" maxlength="40" />
+			</li>
+			<li class="J_userPwd">
+				<label><span>密</span>码</label>
+				<input type="password" value="123" id="J_userPwd" name="J_userPwd" class="ui-input" maxlength="40" />
+			</li>
+			<!-- <li class="J_userPwdS">
+				<label>短信码</label>
+				<input type="text" value="123456"  id="J_userPwdS" name="J_userPwdS" class="ui-input" maxlength="6" />
+				<a class="ui-button ui-button-normal " href="javascript:;" hidefocus="true" id="J_sendPwdS">
+					<span>发送短信码</span>
+				</a>
+			</li> -->
+		</ul>
+	</div>
+	<div class="login-foot">
+		<a class="ui-button ui-button-green " href="javascript:;" hidefocus="true" id="J_login">
+			<span>登 录</span>
+		</a>
+	</div>
+</div>
+
+<script src="ui/js/jquery/1.8.3/jquery.js"></script>
+<script src="ui/js/json2/json2.js"></script>
+<script src="ui/js/dialog/6.0.5/dialog-min.js"></script>
+<script src="ui/js/ez-bg-resize/ez-bg-resize.js"></script>
+<script src="ui/js/md5/2.2/md5.js"></script>
+<script src="ui/js/common.js"></script>
+
+<script type="text/javascript">
+var loginFlag = 0;
+
+$(function(){
+	srvMap.add("sendMsg", "", "front/sh/login!login?uid=01");//短信码接口
+	srvMap.add("login", "", "front/sh/login!login?uid=login");//登录接口
+
+	$("body").ezBgResize({
+		img: "ui/theme/img/loginBg.jpg"
+	});
+	
+	//发送短信码
+	$("#J_sendPwdS").click(function(){
+		var $this = $(this);
+		if($this.hasClass("sending")){
+			return false;
+		}
+		var J_userName = $("#J_userName").val();
+		if(!J_userName){
+			result_tips("请输入账号！", 1, function(){
+				$("#J_userName").focus();
+			})
+			return false;
+		}
+		var J_userPwd = $("#J_userPwd").val();
+		if(!J_userPwd){
+			result_tips("请输入密码！", 1, function(){
+				$("#J_userPwd").focus();
+			})
+			return false;
+		}
+/* 		J_userPwd = hex_md5(J_userPwd);
+		$this.addClass("sending").html("<span>正在发送...</span>");
+		$.PostJson(srvMap.get("sendMsg"), "account="+J_userName+"&passWord="+J_userPwd, function(state, json){
+			if(state == 'success'){
+				if(json && json.returnCode == '0'){
+					result_tips("短信码已发送，请注意查收！", 1, function(){
+						$("#J_userPwdS").focus();
+					});
+					loginFlag = 1;
+				}else{
+					result_prompt(json.returnMessage || "短信发送失败！");
+					//$("#J_userName").focus();
+				}
+			}else{
+				result_prompt(json.returnMessage || "系统错误！");
+			}
+			$this.removeClass("sending").html("<span>发送短信码</span>");
+		}) */
+	})
+
+	//登录
+	$("#J_login").click(function(){
+	/* 	if(!loginFlag){
+			result_tips("请先获取短信验证码！", 1);
+			return false;
+		}
+		var $this = $(this);
+		if($this.hasClass("sending")){
+			return false;
+		} */
+		var $this = $(this);
+		var J_userName = $("#J_userName").val();
+		if(!J_userName){
+			result_tips("请输入账号！", 1, function(){
+				$("#J_userName").focus();
+			})
+			return false;
+		}
+		var J_userPwd = $("#J_userPwd").val();
+		if(!J_userPwd){
+			result_tips("请输入密码！", 1, function(){
+				$("#J_userPwd").focus();
+			})
+			return false;
+		}
+		/* var J_userPwdS = $("#J_userPwdS").val();
+		if(!J_userPwdS){
+			result_tips("请输入短信码！", 1, function(){
+				$("#J_userPwdS").focus();
+			})
+			return false;
+		} */
+		$this.addClass("sending").html("<span>正在登录...</span>");
+		$.PostJson(srvMap.get("login"), "loginName="+J_userName+"&password="+J_userPwd, function(state, json){
+			if(state == 'success'){
+				if(json&&json.returnCode=="0"){
+					window.location.href = 'index.html';
+				}else{
+					result_prompt(json.returnMessage || "验证码错误,请重新输入！");
+					//$("#J_userPwdS").focus();
+				}
+			}else{
+				result_prompt(json.returnMessage || "系统错误！");
+			}
+			$this.removeClass("sending").html("<span>登 录</span>");
+		})
+	})
+})
+
+$(document).ready(function(){
+	$("#J_userName").focus();
+　　$(document).unbind("keydown").bind("keydown", function(evt){
+		keyDownHandler(evt);
+	});
+})
+
+//回车处理事件
+function keyDownHandler(evt){
+	var evt = evt||widow.event;
+	var key = evt.keyCode;
+	//alert(key);
+	if (key == '13'){
+		var id=$(":focus").attr("id"); 
+		//alert(id);
+		switch(id){
+		case "J_userName" :
+			var J_userName = $("#J_userName").val();
+			if(!J_userName){
+				result_tips("请输入账号！", 1, function(){
+					$("#J_userName").focus();
+				});
+			}else{
+				$("#J_userPwd").focus();
+			}
+			break;
+		case "J_userPwd" :
+			var J_userPwd = $("#J_userPwd").val();
+			if(!J_userPwd){
+				result_tips("请输入密码！", 1, function(){
+					$("#J_userPwd").focus();
+				})
+			}else{
+				$("#J_sendPwdS").focus();
+			}
+			break;
+		case "J_sendPwdS" :
+			$("#J_sendPwdS").trigger("click");
+			//$("#J_userPwdS").focus();
+			break;
+		case "J_userPwdS" :
+			$("#J_login").focus();
+			break;
+		case "J_login" :
+			//$("#J_login").trigger("click");
+			break;
+		default:
+			break;
+		}
+	}
+}
+
+</script>
+
+</body>
+</html>

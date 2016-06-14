@@ -1,0 +1,75 @@
+{
+  "busiCode": null,
+  "opId": null,
+  "phone": null,
+  "returnCode": "0",
+  "returnMessage": null,
+  "bean": {
+    "total": "4","roles":["1"]
+  },
+  "beans": [
+    {
+      "opinionType": "-----",
+      "frontImg": "http://www.coderanch.com/t/546939/java/java/Read-image-URL",
+      "workorderStatus": "已通过",
+      "busiType": "定位审核",
+      "feedbackOpinion": "-----",
+      "channelId": "1",
+      "logId": 1,
+      "acceptDate": "2015-06-02 11:12:13",
+      "feedbackOpcode": "-----",
+      "provCode": "北京",
+      "custName": "1207e4ef72da4fbcb3a416d18b8a6702",
+      "custCertNo": "291d534e41354ee2b51a510b06dc95f2",
+      "auditOpinion": "未知",
+      "reverseImg": "http://www.coderanch.com/t/546939/java/java/Read-image-URL"
+    },
+    {
+      "opinionType": "-----",
+      "frontImg": "http://blog.csdn.net/php521php/article/category/2764163",
+      "workorderStatus": "已通过",
+      "busiType": "抽样审核",
+      "feedbackOpinion": "-----",
+      "channelId": "1",
+      "logId": 2,
+      "acceptDate": "2015-06-01 11:12:13",
+      "feedbackOpcode": "-----",
+      "provCode": "北京",
+      "custName": "6ec8328a7dc74b7c82f25758b3bf8c4d",
+      "custCertNo": "05e3ea6a41cf47e9bce6e654c516c4d3",
+      "auditOpinion": "未知",
+      "reverseImg": "http://blog.csdn.net/php521php/article/category/2764163"
+    },
+    {
+      "opinionType": "-----",
+      "frontImg": "http://www.coderanch.com/t/546939/java/java/Read-image-URL",
+      "workorderStatus": "已通过",
+      "busiType": "抽样审核",
+      "feedbackOpinion": "-----",
+      "channelId": "1",
+      "logId": 3,
+      "acceptDate": "2015-06-06 11:12:14",
+      "feedbackOpcode": "-----",
+      "provCode": "北京",
+      "custName": "812fe14f3fcb4a4bb884c588936d7c8b",
+      "custCertNo": "dc7e92ef3a1b4db88a37045e2a73e53c",
+      "auditOpinion": "未知",
+      "reverseImg": "http://www.coderanch.com/t/546939/java/java/Read-image-URL"
+    },
+    {
+      "opinionType": "-----",
+      "frontImg": "http://liuyunlong1229.iteye.com/blog/2213764",
+      "workorderStatus": "已通过",
+      "busiType": "定位审核",
+      "feedbackOpinion": "-----",
+      "channelId": "4",
+      "logId": 4,
+      "feedbackOpcode": "-----",
+      "provCode": "广东",
+      "custName": "b943b2ece0c0436fa9b05cc0b3105fe1",
+      "custCertNo": "2801f0cbb196408181e47667d616b4c8",
+      "auditOpinion": "未知",
+      "reverseImg": "http://my.oschina.net/ydsakyclguozi/blog/419424"
+    }
+  ]
+}

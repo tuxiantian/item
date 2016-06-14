@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<title>testDemo</title>
+<style type="text/css">
+</style>
+</head>
+<body>
+
+<div>
+	<input type="text" value="" id="J_val" name="J_val" />
+	<button id="J_md5">MD5</button>
+	<p></p>
+</div>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="md5.js"></script>
+<script type="text/javascript">
+
+$(function(){
+
+	$("#J_md5").click(function(){
+		var str = $("#J_val").val();
+
+		str = hex_md5(str);
+		$("p").html(str);
+	})
+})
+
+</script>
+</body>
+</html>

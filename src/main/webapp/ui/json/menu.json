@@ -1,0 +1,52 @@
+{
+    "beans": [
+        {
+            "tit": "新建工单",
+            "sub": [
+                {
+                    "tpl": "",
+                    "name": "新建工单sub新建工单sub新建工单sub"
+                },
+                {
+                    "tpl": "XJGD2",
+                    "name": "新建工单sub"
+                }
+            ]
+        },
+        {
+            "tit": "待办工单",
+            "sub": [
+                {
+                    "tpl": "DBGD",
+                    "name": "待办工单sub"
+                },
+                {
+                    "tpl": "DBGD",
+                    "name": "待办工单sub2"
+                },
+                {
+                    "tpl": "DBGD",
+                    "name": "待办工单sub2"
+                },
+                {
+                    "tpl": "DBGD",
+                    "name": "待办工单sub2"
+                },
+                {
+                    "tpl": "DBGD",
+                    "name": "待办工单sub2"
+                }
+            ]
+        },
+        {
+            "tit": "已办工单",
+            "sub": [
+                {
+                    "tpl": "YBGD",
+                    "name": "已办工单sub"
+                }
+            ]
+        }
+    ],
+    "rtnCode": "0"
+}
