@@ -18,6 +18,7 @@ import com.ai.frame.logger.LoggerFactory;
 import com.ai.frame.util.JsonUtil;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.util.ValueStack;
+import com.tuxt.item.common.UserManage;
 import com.tuxt.item.control.IControlService;
 import com.tuxt.item.util.StringUtil;
 
@@ -29,6 +30,7 @@ public abstract class BaseAction extends ActionSupport{
 	private static final long serialVersionUID = 1581119741116374826L;
 	private static final Logger logger = LoggerFactory.getActionLog(BaseAction.class);
 	private IControlService controlService; // 前后工程调用服务
+	
 	private InputObject inputObject;
 
 	/** Get the request Object **/
@@ -45,7 +47,7 @@ public abstract class BaseAction extends ActionSupport{
 	public HttpSession getSession() {
 		return getRequest().getSession();
 	}
-	
+
 	/** Get the current Session **/
 	public HttpSession getSession(boolean arg0) {
 		return getRequest().getSession(arg0);
@@ -60,7 +62,7 @@ public abstract class BaseAction extends ActionSupport{
 	public ValueStack getValueStack() {
 		return ServletActionContext.getValueStack(getRequest());
 	}
-	
+
 
 	/** Get the IControlService Object **/
 	public IControlService getControlService() {
@@ -83,7 +85,7 @@ public abstract class BaseAction extends ActionSupport{
 			logger.error("sendJson", "Exception Occured When Send Json to Client !", e);
 		}
 	}
-	
+
 	/** Print OutputStream to the Browser **/
 	public void sendJson(OutputObject out) {
 		try {
@@ -113,17 +115,17 @@ public abstract class BaseAction extends ActionSupport{
 		OutputObject object= this.execute(inputObject);
 		return object;
 	}
-	
+
 	private OutputObject execute(InputObject inputObject) {
 		OutputObject outputObject = null;
 		try {
-				outputObject = getControlService().execute(inputObject);
+			outputObject = getControlService().execute(inputObject);
 		} catch (Exception e) {
 			logger.error("", "Invoke Service Error.", inputObject.getService() + "." + inputObject.getMethod(), e);
 		}
 		return outputObject;
 	}
-	
+
 	/**
 	 * Json String Unified Conversion Method
 	 * @param outputObject
@@ -158,4 +160,11 @@ public abstract class BaseAction extends ActionSupport{
 		}
 		return json;
 	}
+	protected UserManage userManage;
+
+	public void setUserManage(UserManage userManage) {
+		this.userManage = userManage;
+	}
+	
+
 }

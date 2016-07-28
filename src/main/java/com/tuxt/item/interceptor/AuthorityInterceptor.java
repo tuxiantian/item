@@ -28,6 +28,7 @@ import com.ai.frame.util.JsonUtil;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.AbstractInterceptor;
+import com.tuxt.item.common.UserManage;
 import com.tuxt.item.util.Constants;
 import com.tuxt.item.util.PropertiesUtil;
 import com.tuxt.item.util.StringUtil;
@@ -40,14 +41,20 @@ public class AuthorityInterceptor extends AbstractInterceptor {
 	private static final long serialVersionUID = 8259007565097878289L;
 	private static final Logger logger = LoggerFactory
 			.getUtilLog(AuthorityInterceptor.class);
+	protected UserManage userManage;
 
+	public void setUserManage(UserManage userManage) {
+		this.userManage = userManage;
+	}
 	public String intercept(ActionInvocation invocation) throws Exception {
 		// 创建InputObject对象
 		createInputObject();
 		ActionContext ctx = invocation.getInvocationContext();
 		Map<String, Object> session = ctx.getSession();
-		Object loginUser = session.get(Constants.SESSION_USER);
 		HttpServletRequest request = ServletActionContext.getRequest();
+//		Object loginUser = session.get(Constants.SESSION_USER);
+		Object loginUser =userManage.getOnLinuUser(request.getSession().getId(), null);
+		
 		StringBuffer urlBuffer= request.getRequestURL();
 		String url = urlBuffer.toString();
 

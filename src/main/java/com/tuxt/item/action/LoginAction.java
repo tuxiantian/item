@@ -13,7 +13,6 @@ import com.ai.frame.bean.InputObject;
 import com.ai.frame.bean.OutputObject;
 import com.ai.rgsh.util.tag.Privilege;
 import com.tuxt.item.bean.User;
-import com.tuxt.item.util.Constants;
 
 public class LoginAction extends BaseAction{
 	public void login(){
@@ -25,12 +24,24 @@ public class LoginAction extends BaseAction{
 			user.setLoginUserPhone(out.getValue("tel"));
 			user.setPassWord(out.getValue("password"));
 			HttpSession session=getSession();
-			session.setAttribute(Constants.SESSION_USER, user);
+			/*session.setAttribute(Constants.SESSION_USER, user);*/
+			try {
+				userManage.addOnLinuUser(session.getId(), user, null);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		super.sendJson(super.convertOutputObject2Json(out));
 	}
 	public void getPersonalInfo(){
-		User user=(User)getSession().getAttribute(Constants.SESSION_USER);
+		/*User user=(User)getSession().getAttribute(Constants.SESSION_USER);*/
+		User user = null;
+		try {
+			user = userManage.getOnLinuUser(getSession().getId(), null);
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
 		String name=user.getLoginUserName();
 		OutputObject outputObject=new OutputObject(ControlConstants.RETURN_CODE.IS_OK, "取得个人信息");
 		outputObject.getBean().put("name", name);
@@ -42,7 +53,14 @@ public class LoginAction extends BaseAction{
 		/************************* @TODO 查询用户组织信息 **************************/		
 	}
 	public void getMenuByUser(){
-		User user=(User)getSession().getAttribute(Constants.SESSION_USER);
+//		User user=(User)getSession().getAttribute(Constants.SESSION_USER);
+		User user = null;
+		try {
+			user = userManage.getOnLinuUser(getSession().getId(), null);
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
 		//根据User ID查询角色及其对应的菜单
 		InputObject in=new InputObject();
 		in.setMethod("queryMenu");
@@ -64,8 +82,13 @@ public class LoginAction extends BaseAction{
 	}
 	public void quit(){
 		HttpSession session=getSession();
-		session.setAttribute(Constants.SESSION_USER, null);
-		session.invalidate();
+		/*session.setAttribute(Constants.SESSION_USER, null);
+		session.invalidate();*/
+		try {
+			userManage.removeOnLinuUser(session.getId(), null);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		sendJson(new OutputObject("0","成功退出"));
 	}
 }
