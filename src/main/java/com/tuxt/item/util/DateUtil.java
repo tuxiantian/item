@@ -12,6 +12,7 @@ import java.util.TreeMap;
 
 import com.ai.frame.logger.Logger;
 import com.ai.frame.logger.LoggerFactory;
+import com.tuxt.item.util.Constants.CONFIG_NAME;
 
 public final class DateUtil {
 	public static final String FORMAT = "yyyy-MM-dd HH:mm:ss";
@@ -33,8 +34,8 @@ public final class DateUtil {
 	 */
 	public static boolean checkLoginTime() {
 		String currentDate = new SimpleDateFormat("yyyy-MM-dd").format(System.currentTimeMillis());
-		String loginStartTime = currentDate + " "+ (PropertiesUtil.getString("loginStartTime")); // 登录开始时间
-		String loginEndTime = currentDate + " "+ (PropertiesUtil.getString("loginEndTime")); // 登录结束时间
+		String loginStartTime = currentDate + " "+ (PropertiesUtil.getString(CONFIG_NAME.SYSTEM,"loginStartTime")); // 登录开始时间
+		String loginEndTime = currentDate + " "+ (PropertiesUtil.getString(CONFIG_NAME.SYSTEM,"loginEndTime")); // 登录结束时间
 		String currentTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(System.currentTimeMillis());
 		if (DateUtil.formatDate(loginStartTime).getTime() < DateUtil
 				.formatDate(currentTime).getTime()

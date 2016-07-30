@@ -18,6 +18,7 @@ import com.ai.frame.logger.Logger;
 import com.ai.frame.logger.LoggerFactory;
 import com.tuxt.item.util.PropertiesUtil;
 import com.tuxt.item.util.StringUtil;
+import com.tuxt.item.util.Constants.CONFIG_NAME;
 
 import freemarker.template.Configuration;
 import freemarker.template.Template;
@@ -64,7 +65,7 @@ public class FreemarkerEngine {
 	 * 增加root共享数据
 	 */
 	private void createConfiguration(Configuration configuration) throws TemplateException{
-		String releaseNo = PropertiesUtil.getString("releaseNo");
+		String releaseNo = PropertiesUtil.getString(CONFIG_NAME.SYSTEM,"releaseNo");
 		releaseNo = StringUtil.isEmpty(releaseNo)?"1":StringUtil.trim2Empty(releaseNo);
 		configuration.setSharedVariable("version", releaseNo);
 	}

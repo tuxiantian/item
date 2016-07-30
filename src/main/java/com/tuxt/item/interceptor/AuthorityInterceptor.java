@@ -32,6 +32,7 @@ import com.tuxt.item.common.UserManage;
 import com.tuxt.item.util.Constants;
 import com.tuxt.item.util.PropertiesUtil;
 import com.tuxt.item.util.StringUtil;
+import com.tuxt.item.util.Constants.CONFIG_NAME;
 
 /**
  * @author shilei6@asiainfo.com
@@ -171,7 +172,7 @@ public class AuthorityInterceptor extends AbstractInterceptor {
 						Field field = Class.forName("com.ai.rgsh.util.Constants").getDeclaredField(key);
 						object = field.get(field.getName());
 					} else if (scope != null && ControlConstants.PARAM_SCOPE.PROPERTIES.equals(scope)) {// 从配置文件中读取
-						object = PropertiesUtil.getString(key);
+						object = PropertiesUtil.getString(CONFIG_NAME.SYSTEM,key);
 					} else if (scope != null && ControlConstants.PARAM_SCOPE.FILE.equals(scope)) {// 上传文件
 						Map<String, Object> fileMap = ServletActionContext.getContext().getParameters();
 						File[] files = (File[]) fileMap.get(key);

@@ -45,7 +45,7 @@
 		<dependency>
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-redis</artifactId>
-            <version>1.5.2.RELEASE</version>
+            <version>1.7.2.RELEASE</version>
         </dependency>
     	<dependency>
             <groupId>redis.clients</groupId>
@@ -68,7 +68,11 @@
 			<artifactId>spring-web</artifactId>
 			<version>${org.apache.spring.version}</version>
 		</dependency>
-
+		<!-- <dependency>
+			<groupId>org.springframework</groupId>
+  			<artifactId>spring-core</artifactId>
+  			<version>${org.apache.spring.version}</version>
+		</dependency> -->
 		<!--struts2 -->
 		<dependency>
 			<groupId>org.apache.struts</groupId>

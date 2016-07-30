@@ -47,7 +47,7 @@ public class UserManage {
 					 * (RedisSerializer<User>) redisTemplate
 					 * .getValueSerializer();
 					 */
-					connection.select(2);//切换redis的DB可以不需要,redis默认配置为0-15共16个库,可以通过这行代码实现切换
+//					connection.select(2);//切换redis的DB可以不需要,redis默认配置为0-15共16个库,可以通过这行代码实现切换
 					connection.setEx(key.getBytes(),
 							RedisExpire.ThirtyMinuteSecend,
 							stringToByte(JSONObject.toJSONString(user)));//序列化采用了fastjson
@@ -79,7 +79,7 @@ public class UserManage {
 			Boolean falg = redisTemplate.execute(new RedisCallback<Boolean>() {
 				public Boolean doInRedis(RedisConnection connection)
 						throws DataAccessException {
-					connection.select(2);
+//					connection.select(2);
 					Long del = connection.del(key.getBytes());
 					if (del == 1) {
 						return true;
@@ -113,7 +113,7 @@ public class UserManage {
 				.execute(new RedisCallback<User>() {
 					public User doInRedis(RedisConnection connection)
 							throws DataAccessException {
-						connection.select(2);
+//						connection.select(2);
 						byte[] bs = connection.get(key.getBytes());
 						String byteToString = byteToString(bs);
 						User userinfo = JSONObject.parseObject(
