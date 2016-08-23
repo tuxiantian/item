@@ -158,4 +158,19 @@ public abstract class BaseAction extends ActionSupport{
 		}
 		return json;
 	}
+	protected void convertOutputError(OutputObject outputObject, Exception e) {
+		outputObject.setReturnCode(ControlConstants.RETURN_CODE.SYSTEM_ERROR);
+		outputObject.setReturnMessage(e.getMessage() == null ? (e.getCause() == null ? "系统异常!"
+						: e.getCause().getMessage()) : e.getMessage());
+		logger.error("", outputObject.getReturnMessage(), e);
+	}
+	
+	protected void convertOutputError(OutputObject outputObject, String errMsg, Exception e) {
+		outputObject.setReturnCode(ControlConstants.RETURN_CODE.SYSTEM_ERROR);
+		String exceptionMsg = e.getMessage() == null ? (e.getCause() == null ? "系统异常!"
+				: e.getCause().getMessage()) : e.getMessage();
+		
+		outputObject.setReturnMessage(StringUtil.isNotEmpty(errMsg)? errMsg : exceptionMsg);
+		logger.error("", outputObject.getReturnMessage(), e);
+	}
 }
