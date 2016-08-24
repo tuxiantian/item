@@ -91,7 +91,7 @@ public class ExcelPOI07Util {
 			Row row = sheet.createRow(startR + i); 
 			for (int j = 0, jlen = dataEnNameArr.length; j < jlen; j++) {
 				Cell cell = row.createCell(j);
-				cell.setCellValue(StringUtil.trim2Empty((String) dataList.get(i).get(dataEnNameArr[j])));
+				cell.setCellValue(StringUtil.trim2Empty(String.valueOf(dataList.get(i).get(dataEnNameArr[j]))));
 				cell.setCellStyle(normalCellStyle);
 			}
 		}
