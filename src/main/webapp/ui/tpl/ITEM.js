@@ -3,6 +3,7 @@ define(['text!../tpl/ITEM.tpl'], function(tpl){
 
 		//主页面的查询table
 		srvMap.add("ITEM", "tableData.json?1=1", "front/sh/item!execute?uid=getItemMagerByCdt");
+		srvMap.add("EXPORT", "tableData.json?1=1", "front/sh/item!exportWebExcel?uid=exportItemByCdt");
 		srvMap.add("SITEM", "tableData.json?1=1", "front/sh/item!execute?uid=queryItemByKey");
 		srvMap.add("CATEGORY", "tableData.json?1=1", "front/sh/itemCategory!execute?uid=queryItemCategory");
 
@@ -82,6 +83,9 @@ define(['text!../tpl/ITEM.tpl'], function(tpl){
 				hideMenu();
 			}
 		}
+		$("#J_export").click(function(){
+			window.location.href=srvMap.get("EXPORT");			
+		});
 		/*类别树 end*/
 		$("#J_search").click(function(){
 			var str = $("#J_formSearch").formSerialize();

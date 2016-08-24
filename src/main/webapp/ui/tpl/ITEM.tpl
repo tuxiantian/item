@@ -34,8 +34,11 @@
 							<i class="iconfont" title="查询/搜索"></i>
 							<span>查 询</span>
 						</a>
-						<a class="ui-button ui-button-red " href="javascript:;" hidefocus="true" id="J_grab">
+						<a class="ui-button ui-button-red  fn-mr-20" href="javascript:;" hidefocus="true" id="J_grab">
 							<span>抢 单</span>
+						</a>
+						<a class="ui-button ui-button-blue " href="javascript:;" hidefocus="true" id="J_export">
+							<span>导 出</span>
 						</a>
 					</td>
 				</tr>

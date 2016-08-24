@@ -1,15 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <control>
-<action path="/front/sh/item!execute" service="" method="">
-<input uid="getItemMagerByCdt" service="itemService" method="queryItems" desc="查询新闻列表">
-	<parameter key="J_category" toKey="category" desc="新闻类别"></parameter>
-	<parameter key="J_date_s" toKey="startDate" scop="request" desc="统计结束日期"/>
-	<parameter key="page" toKey="startPage" scop="request" desc="页索引"/>
-	<parameter key="rows" toKey="pageCount" scop="request" desc="页大小"/>
-	
-</input>
-<input uid="queryItemByKey" service="itemService" method="queryItemByKey" desc="查询新闻信息">
-<parameter key="itemId" toKey="itemId" scop="request" regex="required" desc="主键"/>
-</input>
-</action>
+	<action path="/front/sh/item!execute" service="" method="">
+		<input uid="getItemMagerByCdt" service="itemService" method="queryItems"
+			desc="查询新闻列表">
+			<parameter key="J_category" toKey="category" desc="新闻类别"></parameter>
+			<parameter key="J_date_s" toKey="startDate" scop="request"
+				desc="统计结束日期" />
+			<parameter key="page" toKey="startPage" scop="request"
+				desc="页索引" />
+			<parameter key="rows" toKey="pageCount" scop="request"
+				desc="页大小" />
+
+		</input>
+		<input uid="queryItemByKey" service="itemService" method="queryItemByKey"
+			desc="查询新闻信息">
+			<parameter key="itemId" toKey="itemId" scop="request"
+				regex="required" desc="主键" />
+		</input>
+	</action>
+	<action path="/front/sh/item!exportWebExcel" service="" method="">
+		<input uid="exportItemByCdt" service="itemService" method="exportItemByCdt"
+			desc="导出新闻列表">
+		</input>
+	</action>
 </control>
